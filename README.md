@@ -15,3 +15,9 @@ localhost menunjukkan server AMQP dijalankan pada mesin lokal.
 ## Simulation slow subscriber
 ![alt text](image_queue.png)
 Pada beberapa waktu tertentu terdapat sampai 25 message yang tertahan. Pesan yang tertahan ini atau queued message terjadi karena adanya delay pada subscriber. Subscriber memerlukan waktu yang lebih lama dari sebelumnya untuk memperoses pesan yang diterima. Oleh karena itu terjadi penumpukan pesan saat subsciber belum bisa menanganinya. Terdapat perbedaan kecepatan pada subsciber dan publisher. Perbedaan kecepatan ini menimbulkan antrian atau queue saat kita menjalankan cargo run berulang kali yang mengirimkan pesan. Akibatnya terdapat queue yang menunjukkan penumpukan pesan yang terjadi.
+
+## Reflection and Running at least three subscribers
+![alt text](image_subs.png)
+![alt text](image_rabbit.png)
+
+Ketika kita menambahkan jumlah subscriber, semakin banyak pesan yang dapat dipross dalam satu waktu. Pada saat kita menjalankan tiga subscriber, antrian pesan dapat terurai dengan lebih cepat, hal ini disebabkan oleh distribusi tugas yang ada. Dengan menerapkan prinsip tersebut, waktu respons yang ada menjadi lebih cepat. Berbeda halnya jika kita hanya menjalankan satu subscriber saja. Jika kita hanya menjalankan satu subscriber, semua tugas akan mengantri pada subscriber tersebut dan tidak ada distribusi tugas. Dengan menjalankan beberapa subscriber sekaligus kita mempercepat laju message queue dan mempercepat respons secara keseluruhan.
